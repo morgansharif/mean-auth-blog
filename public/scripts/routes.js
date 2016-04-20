@@ -57,7 +57,10 @@ function configRoutes($routeProvider, $locationProvider) {
     .when('/posts/:id', {
       templateUrl: 'templates/posts/show.html',
       controller: 'PostsShowController',
-      controllerAs: 'postsShowCtrl'
+      controllerAs: 'postsShowCtrl',
+      resolve: {
+        loginRequired: loginRequired
+      }
     })
     .when('/posts/:id/edit', {
       templateUrl: 'templates/posts/edit.html',

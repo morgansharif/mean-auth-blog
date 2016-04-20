@@ -6,10 +6,10 @@
 </div>
 <form>
   <div class="form-group">
-    <input type="text" class="form-control" value="title" placeholder="Title">
+    <input type="text" class="form-control" ng-model="postsEditCtrl.post.title" placeholder="Title">
   </div>
   <div class="form-group">
-    <textarea class="form-control" value="content" placeholder="Content"></textarea>
+    <textarea class="form-control" ng-model="postsEditCtrl.post.content" placeholder="Content"></textarea>
   </div>
   <input type="submit" value="Update Post" class="btn btn-block btn-info">
 </form>

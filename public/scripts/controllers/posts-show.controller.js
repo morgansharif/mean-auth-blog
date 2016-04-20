@@ -2,6 +2,7 @@ PostsShowController.$inject = ["$location", "$http", "$routeParams"]; // minific
 function PostsShowController ($location, $http, $routeParams) {
   var vm = this;
   vm.post = {};
+
   $http({
     method: "GET",
     url: "/api/posts/" + $routeParams.id

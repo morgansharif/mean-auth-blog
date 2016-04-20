@@ -3,12 +3,12 @@ function PostsEditController ($location, $http, $routeParams) {
   var vm = this;
   vm.post = {}; // form data
   vm.update = update;
+  var id = $routeParams.id;
 
   $http({
     method: "GET",
-    url: "/api/posts/" + $routeParams.id
-  })
-  .then(onGetSuccess, onGetError);
+    url: "/api/posts/" + id
+  }).then(onGetSuccess, onGetError);
 
   function onGetSuccess(response){
     vm.post = response.data;
@@ -22,8 +22,8 @@ function PostsEditController ($location, $http, $routeParams) {
 
   function update(){
     $http
-      .put("/api/posts/" + $routeParams.id, vm.post)
-      .then(onUpdateSucces, onUpdateError);
+      .put("/api/posts/" + id, vm.post)
+      .then(onUpdateSuccess, onUpdateError);
 
     function onUpdateSuccess(response){
     $location.path("/posts/" + id);

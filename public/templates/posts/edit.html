@@ -4,7 +4,9 @@
   <a class="btn btn-danger col-xl-2">Delete Post</a>
   <hr>
 </div>
-<form>
+<!-- <form ng-submit="postsNewCtrl.create()"> -->
+
+<form ng-submit="postsEditCtrl.update()">
   <div class="form-group">
     <input type="text" class="form-control" ng-model="postsEditCtrl.post.title" placeholder="Title">
   </div>

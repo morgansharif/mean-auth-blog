@@ -1,7 +1,8 @@
-PostsIndexController.$inject = ["$http"]; // minification protection
-function PostsIndexController ($http) {
+PostsIndexController.$inject = ["$http", "$auth"]; // minification protection
+function PostsIndexController  ( $http,   $auth) {
   var vm = this;
   vm.posts = [];
+  vm.isLoggedIn = $auth.isAuthenticated();
 
   query(); // fetch all the posts (index)
 

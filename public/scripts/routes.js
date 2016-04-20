@@ -65,13 +65,18 @@ function configRoutes($routeProvider, $locationProvider) {
     .when('/posts/:id/edit', {
       templateUrl: 'templates/posts/edit.html',
       controller: 'PostsEditController',
-      controllerAs: 'postsEditCtrl'
+      controllerAs: 'postsEditCtrl',
+      resolve: {
+        loginRequired: loginRequired
+      }
     })
     .otherwise({redirectTo: '/'});
 
     //BEFORE ACTION
     function skipIfLoggedIn($q, $auth) {
-      return $auth.isAuthenticated();
+      if ($auth.isAuthenticated()) {
+        $location.path('/');
+      }
     }
 
     function loginRequired($q, $location, $auth) {

@@ -2,6 +2,7 @@ PostsShowController.$inject = ["$location", "$http", "$routeParams"]; // minific
 function PostsShowController ($location, $http, $routeParams) {
   var vm = this;
   vm.post = {};
+  vm.isAuthor = isAuthor;
 
   $http({
     method: "GET",
@@ -16,4 +17,10 @@ function PostsShowController ($location, $http, $routeParams) {
   console.error("Failed to get post", response);
   $location.path("/");
   }
+
+
+  function isAuthor(currentUser){
+    return vm.post.user._id === currentUser.user_id;
+  }
 }
+// postsShowCtrl.post.user._id === main.currentUser.user_id

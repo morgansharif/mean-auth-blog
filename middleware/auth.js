@@ -8,19 +8,22 @@ function ensureAuthenticated(req, res, next) {
   if (!req.headers.authorization) {
     return res.status(401).send({ message: 'Please make sure your request has an Authorization header.' });
   }
-
+  // split up between bearer and token and take token
   var token = req.headers.authorization.split(' ')[1];
   var payload = null;
 
   try {
     payload = jwt.decode(token, process.env.TOKEN_SECRET);
   }
+  //incorrect jwt
   catch (err) {
     return res.status(401).send({ message: err.message });
   }
+  //check if token is expired
   if (payload.exp <= moment().unix()) {
     return res.status(401).send({ message: 'Token has expired.' });
   }
+  //attach user_id to request --payload.user_id is a string
   req.user_id = payload.user_id;
   next();
 }
@@ -31,8 +34,8 @@ function ensureAuthenticated(req, res, next) {
 function createJWT(user) {
   var payload = {
     user_id: user._id, // required by satellizer
-    displayName: user.displayName,
-    email: user.email,
+    displayName: user.displayName, //optional
+    email: user.email, //optional
     iat: moment().unix(),
     exp: moment().add(14, 'days').unix()
   };

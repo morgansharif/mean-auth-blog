@@ -35,10 +35,10 @@ app.put('/api/me', auth.ensureAuthenticated, usersCtrl.updateCurrentUser);
 
 var postsCtrl = controllers.posts;
 app.get('/api/posts', postsCtrl.index);
-app.post('/api/posts', postsCtrl.create);
+app.post('/api/posts', postsCtrl.create); //ADD AUTH
 app.get('/api/posts/:id', postsCtrl.show);
-app.put('/api/posts/:id', postsCtrl.update);
-app.delete('/api/posts/:id', postsCtrl.destroy);
+app.put('/api/posts/:id', postsCtrl.update); //ADD AUTH
+app.delete('/api/posts/:id', postsCtrl.destroy); //ADD AUTH
 
 
 /*

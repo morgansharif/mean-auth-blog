@@ -3,6 +3,7 @@ function PostsEditController ($location, $http, $routeParams) {
   var vm = this;
   vm.post = {}; // form data
   vm.update = update;
+  vm.destroy = destroy;
   var id = $routeParams.id;
 
   $http({
@@ -33,5 +34,20 @@ function PostsEditController ($location, $http, $routeParams) {
       console.error("Failed to update post", response);
     }
   }
+
+  function destroy(){
+    $http
+      .delete("/api/posts/" + id)
+      .then(onDeleteSuccess, onDeleteError);
+
+    function onDeleteSuccess(response){
+    $location.path("/");
+    }
+
+    function onDeleteError(response){
+      console.error("Failed to update post", response);
+    }
+  }
+
 
 }
